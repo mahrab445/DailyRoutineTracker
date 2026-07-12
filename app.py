@@ -26,10 +26,13 @@ cursor = db.cursor(dictionary=True)
 @app.route("/")
 def home():
 
+    # Bangladesh Time
+    today = datetime.now(ZoneInfo("Asia/Dhaka")).date().isoformat()
+
     selected_date = request.args.get("date")
 
     if not selected_date:
-        selected_date = str(date.today())
+        selected_date = today
 
     cursor.execute("""
         SELECT *
@@ -37,8 +40,6 @@ def home():
         ORDER BY id
     """)
     tasks = cursor.fetchall()
-
-    print(tasks)
 
     routine = {}
 
@@ -52,16 +53,14 @@ def home():
 
     for row in rows:
         routine[row["task_id"]] = row["status"]
-    
 
     return render_template(
-    "index.html",
-    tasks=tasks,
-    routine=routine,
-    today=selected_date,
-    current_date=str(date.today())
-)
-
+        "index.html",
+        tasks=tasks,
+        routine=routine,
+        today=selected_date,
+        current_date=today
+    )
 @app.route("/save", methods=["POST"])
 def save():
 
