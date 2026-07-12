@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Routine Summary</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container py-5">
+
+    <div class="main-card">
+
+        <div class="header">
+
+            <div>
+
+                <h1>
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    Routine Summary
+
+                </h1>
+
+                <p>Your Daily Performance</p>
+
+            </div>
+
+            <a href="/" class="summary-btn">
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+        </div>
+
+
+        <!-- Dashboard Cards -->
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <h2>{{ total_days }}</h2>
+
+                    <p>Total Days</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    <h2>{{ total_completed }}</h2>
+
+                    <p>Completed</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-list-check"></i>
+
+                    <h2>{{ total_tasks }}</h2>
+
+                    <p>Total Tasks</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <h2>{{ average }}%</h2>
+
+                    <p>Average</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="table-responsive">
+
+            <table class="table table-dark table-hover align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+
+                        <th>Completed</th>
+
+                        <th>Total</th>
+
+                        <th>Progress</th>
+
+                        <th>View</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for row in summary %}
+
+                <tr>
+
+                    <td>
+
+                        <i class="fa-solid fa-calendar"></i>
+
+                        {{ row.routine_date }}
+
+                    </td>
+
+                    <td>
+
+                        {{ row.completed_tasks }}
+
+                    </td>
+
+                    <td>
+
+                        {{ row.total_tasks }}
+
+                    </td>
+
+                   <td style="width:35%;">
+
+                     <div class="progress">
+
+                        <div class="progressBar bg-success"
+                              style="width: {{ row.percentage }}%;">
+                        </div>
+
+                     </div>
+
+                     <small>{{ row.percentage }}%</small>
+
+                     </td>
+                    
+
+
+                    <td>
+
+                        <a href="/?date={{ row.routine_date }}"
+
+                        class="btn btn-primary btn-sm">
+
+                            View
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

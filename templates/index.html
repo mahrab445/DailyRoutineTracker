@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daily Routine Tracker</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="container py-5">
+
+    <div class="main-card">
+
+        <div class="header">
+
+            <div>
+
+                <h1>
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Daily Routine
+                </h1>
+
+                 <p id="liveTime"></p>
+
+                <p id="todayDate">
+                    {{ today }}
+                </p>
+
+            </div>
+
+            <a href="/summary" class="summary-btn">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Summary
+
+            </a>
+
+        </div>
+
+        <div class="top-section">
+
+            <div class="date-card">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <input
+                    type="date"
+                    id="routineDate"
+                    value="{{ today }}">
+
+            </div>
+
+            <div class="progress-card">
+
+                <div class="progress-title">
+
+                    <span>Today's Progress</span>
+
+                    <span id="progressText">
+
+                        0%
+
+                    </span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div id="progressBar"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="task-title">
+
+            <i class="fa-solid fa-list-check"></i>
+
+            Today's Tasks
+
+        </div>
+
+        <div class="task-list">
+
+            {% for task in tasks %}
+
+            <div class="task-card">
+
+                <label>
+                           <input
+                            class="taskCheck"
+                            type="checkbox"
+                            data-id="{{ task.id }}"
+                            {% if routine.get(task.id) %}checked{% endif %}
+                            {% if today != current_date %}disabled{% endif %}>
+
+                    <span class="checkmark"></span>
+
+                    {{ task.task_name }}
+
+                </label>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
