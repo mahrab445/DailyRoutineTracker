@@ -212,7 +212,7 @@ def summary():
     average = 0
 
     if total_tasks > 0:
-        average = round((total_completed / total_tasks) * 100)
+        average = round(((total_completed / total_tasks) * 100)/total_days)
 
     return render_template(
         "summary.html",
