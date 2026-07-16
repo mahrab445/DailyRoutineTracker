@@ -203,11 +203,11 @@ def summary():
     """)
     total_completed = cursor.fetchone()["total_completed"]
 
-   cursor.execute("""
-    SELECT COUNT(*) AS total_tasks
-    FROM tasks
-""")
-total_tasks = cursor.fetchone()["total_tasks"]
+    cursor.execute("""
+        SELECT COUNT(*) AS total_tasks
+        FROM tasks
+    """)
+    total_tasks = cursor.fetchone()["total_tasks"]
 
     average = 0
 
@@ -222,7 +222,6 @@ total_tasks = cursor.fetchone()["total_tasks"]
         total_tasks=total_tasks,
         average=average
     )
-
 
 if __name__ == "__main__":
     app.run(debug=True)
