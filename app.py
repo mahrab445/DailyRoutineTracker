@@ -203,12 +203,11 @@ def summary():
     """)
     total_completed = cursor.fetchone()["total_completed"]
 
-    cursor.execute("""
-        SELECT COUNT(*) AS total_tasks
-        FROM tasks
-    """)
-    total_tasks = cursor.fetchone()/total_days["total_tasks"]
-
+   cursor.execute("""
+    SELECT COUNT(*) AS total_tasks
+    FROM tasks
+""")
+total_tasks = cursor.fetchone()["total_tasks"]
     average = 0
 
     if total_tasks > 0:
