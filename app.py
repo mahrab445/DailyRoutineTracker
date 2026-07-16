@@ -207,7 +207,7 @@ def summary():
         SELECT COUNT(*) AS total_tasks
         FROM tasks
     """)
-    total_tasks = cursor.fetchone()["total_tasks"]
+    total_tasks = cursor.fetchone()/total_days["total_tasks"]
 
     average = 0
 
