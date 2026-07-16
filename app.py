@@ -208,6 +208,7 @@ def summary():
     FROM tasks
 """)
 total_tasks = cursor.fetchone()["total_tasks"]
+
     average = 0
 
     if total_tasks > 0:
