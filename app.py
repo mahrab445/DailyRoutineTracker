@@ -6,10 +6,10 @@ from zoneinfo import ZoneInfo
 app = Flask(__name__)
 
 db = mysql.connector.connect(
-    host="thomas.proxy.rlwy.net",
-    port=17894,
-    user="root",
-    password="SaGNihjdshpLSEhVxhSoSsMueJrvYpVu",
+    host="********",
+    port=******,
+    user="*******",
+    password="************",
     database="railway"
 )
 
